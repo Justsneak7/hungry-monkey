@@ -3,7 +3,7 @@ var monkey , monkey_running;
 var banana ,bananaImage,bananaGroup, obstacle, obstacleImage;
 
 var stone,stoneImage,stoneGroup;
-var time = 0;
+var time = 0,score = 0;
 var ground,groundImg,ground2,groundImg2;
 var invisGround;
 
@@ -70,8 +70,21 @@ background("#00FFFF");
 
   if(bananaGroup.isTouching(monkey)){
       bananaGroup.destroyEach();
+      score = score + 2;
+    }  
+    //To bring up score and time
+  //SCORE
+  fill("black");
+  text("Your Score: "+ score,450,100);
+  
 
-  }
+  //TIME
+  fill("blue");
+  time  = Math.ceil(frameCount/frameRate())
+  text("Survival time: "+ time,100,100);
+
+
+ 
   
   obstacles();
 
@@ -84,8 +97,10 @@ function obstacles(){
   stone = createSprite(250,375,15,15);
   stone.addImage("stone",stoneImage);
   stone.scale = 0.2;
+  stone.lifetime = 600;
   stoneGroup.add(stone)
   stone.setCollider("rectangle",0,100,stone.width = 0,stone.height = 600);
+  
   //stone.debug = true;
 }
 
